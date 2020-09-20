@@ -132,7 +132,7 @@
  """;
 
  cp 2.config.sh /mnt/root/
- arch-chroot /mnt/root
+ arch-chroot /mnt/
  swapoff -a
  umount -R /mnt
  reboot
