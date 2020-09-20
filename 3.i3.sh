@@ -1,5 +1,13 @@
 #!/bin/bash
 
+ function yay {
+    echo "instalando yay"
+    git clone "https://aur.archlinux.org/yay.git"
+    cd yay
+    makepkg -si
+    cd ..
+    rm -r yay
+ }
  function sistema {
     #UPDATE
     echo "ACTUALIZAMOS SISTEMA"
@@ -56,7 +64,7 @@
     #CONFIGURACION I3BLOCKS
   }
   
-
+yay
 sistema
 servidorGrafico
 sessionManager

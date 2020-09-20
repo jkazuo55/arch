@@ -114,15 +114,6 @@
   echo "direcotiros creados para jkazazuo55"
  }
 
-  function yay {
-    echo "instalando yay"
-    git clone "https://aur.archlinux.org/yay.git"
-    cd yay
-    makepkg -si
-    cd ..
-    rm -r yay
- }
- 
  function otrosProgramas {
   echo "INSTALAMOS OTROS PROGRAMAS"
   pacman -S ttf-{dejavu,hack,roboto,liberation} --needed --noconfirm
@@ -137,7 +128,7 @@
   echo "configuracion terminada"
 
   #CONFIG EXTRA
-  pacman -S --noconfirm alsa-utils
+  pacman -S --noconfirm extra/alsa-utils
   alsactl init  #activar sonido
   pacman -S pulseaudio pavucontrol --noconfirm
   export arch=x86_64 #variable de entorno
@@ -145,34 +136,15 @@
  }
 
  reloj
- sleep 10
- clear
  lenguaje
- sleep 15
- clear
  red
- sleep 20
- clear
  configRoot
- sleep 20
- clear
  grubEfi
- sleep 30
- clear
  configUser
- sleep 30
- clear
- yay
- clear
- sleep 20
  otrosProgramas
- sleep 20
- clear
  configExtra
- sleep 30
  echo "========================================="
- echo "CONFIGURACION SEGUNDA PARTE TERMINADA!!!!"
+ echo "CONFIGURACION TERMINADA!!!!"
  echo "========================================="
- exit
- exit
+ 
 

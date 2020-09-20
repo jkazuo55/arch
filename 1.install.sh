@@ -102,22 +102,12 @@
 
 
  logo
- sleep 5
- clear
  verificacionDisco
- sleep 10
- clear
  formatearDisco
- sleep 20
- clear
  prepararInstalacion
- sleep 30
- clear
  instalarSistema
- sleep 30
- clear
  configSistema
- sleep 30
+
  echo "==================================================="
  echo "Instalacion y Configuracion Primera parte Terminado"
  echo "==================================================="
@@ -140,6 +130,12 @@
  #reboot
 
  """;
+
+ cp 2.config.sh /mnt/root/
+ arch-chroot /mnt/root
+ swapoff -a
+ umount -R /mnt
+ reboot
 
 
 
