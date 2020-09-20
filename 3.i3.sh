@@ -21,7 +21,7 @@
     # sudo pacman -S xorg xorg-server xorg-xinit 
     sudo pacman -S xorg-server xorg-xinit --noconfirm
     echo "preparamos el archivo de configuracion"
-    sudo cp /etc/X11/xinit/xinitrc ~/.xinitrc
+    #sudo cp /etc/X11/xinit/xinitrc ~/.xinitrc
     echo ""
  }
 
@@ -50,6 +50,13 @@
     #sudo cp /etc/i3blocks.conf /home/jkazuo55/.config/i3/ 
     sudo pacman -S rofi --noconfirm #menu de apps
     
+    echo "################################"
+    echo "################################"
+    echo "################################"
+    echo "################################"
+    echo "################################"
+    
+
     yay -S aur/dunst-git --noconfirm #notificador
     systemctl --user import-environment DISPLAY
     systemctl start --user dunst
@@ -57,7 +64,7 @@
     
     sudo pacman -S nitrogen --noconfirm #generador de fondo de pantalla
     echo "configuramos el incio automatico de i3-gaps"
-    echo "exec i3" >> /home/jkazuo55/.xinitrc
+    echo "exec i3" > /home/jkazuo55/.xinitrc
 
     #CONFIGURACION I3
     git clone "https://github.com/jkazuo55/i3.git" /home/jkazuo55/.config/i3/
