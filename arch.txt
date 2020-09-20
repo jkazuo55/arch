@@ -1,0 +1,334 @@
+ARCHLINUX
+
+* GRAFICAS
+
+   * SERVIDOR DESKTOP
+	sudo pacman -S xorg xorg-xinit
+	cp /etc/X11/xinit/xinitrc ~/.xinitrc
+	
+    * MANAGER SESSIONS
+	sudo pacman -S lightdm
+	sudo pacman -S lightdm-gtk-greeter lightdm-gtk-greeter-settings
+	sudo systemctl enable lightdm.service
+
+	sudo pacman -S slim slim-themes archlinux-themes-slim
+	sudo git clone https://github.com/greencloud/nsa-parody.git //theme
+     
+   * AWESOME
+	$sudo pacman -S awesome vicious
+	$mkdir ~/.config/awesome
+	$cp /etc/xdg/awesome/rc.lua ~/.config/awesome/
+	$sudo mv background.png /usr/share/awesome/themes/default
+
+   * THUNEAR
+	$sudo pacman -S papirus-icon-theme numix-gtk-theme-git
+	#vim /usr/share/gtk-3.0/settings.ini
+	// Papirus-Dark y Numix
+	>o tambien
+	#yay -S flat-remix yay -S flat-remix
+	Flat-Remix-Red-Dark FlatRemix-GTK-Blue-Darkest
+	
+	//change themes
+	ls /usr/share/icons/
+	ls /usr/share/themes/
+
+
+====== CONFIGURATIONS =========
+
+   * uncoment multilib for aur software
+      /etc/pacman.conf
+      [multilib]
+      Include = /etc/pacman.d/mirrorlist
+
+   * mirrorlist
+      $curl -o mirrorlist https://www.archlinux.org/mirrorlist/all/
+      $sed -i 's/#S/S/g' mirrorlist
+      $yay -S mirrorlist-rankmirrors-hook
+      $rankmirrors mirrorlist > mirrorlist.fastest
+
+====== APLICACIONES =========
+	
+  PACMAN
+	vim /etc/pacman.conf //unoment Color
+
+        pcmanfm alsa-utils bash-completion file-roller p7zip unrar unzip thunar thunar-archive-plugin terminator vim geany flameshot gimp inkscape git feh testdisk lshw xsensors cups simple-scan tree htop gparted okular aria2 transmission-gtk youtube-dl curl cmus mpv screenfetch brasero cclive 
+
+tumbler ffmpegthumbnailer thunar-volman
+netbeans composer nodejs-lts-carbon 
+
+clementine
+
+  AURMAN
+        ttf-windows times-newer-roman
+	net-tools jdk9 pamac-aur google-chrome code perl-goo-canvas wps-office-mui-es-es telegram-desktop whatsapp-nativefier ffmpegthumbnailer-mp3 caprine arp-scan handbrake avidemux-qt wps-office-mui-es-mx wps-office-extension-spanish-dictionary wps-office-mui-es-mx ttf-ms-fonts translate-shell spotify jdownloader2 castnow-git speedtest-cli
+  
+  expandrive
+  maven intellij-idea-community-edition simple-http-server postman
+  xzoom
+  gromit-mpx-git
+  cp gromit-mpx.cfg ~/.config/gromit-mpx.cfg
+
+  mupdf
+	
+
+INSTALL OTROS PROGRAMAS 
+     YAY
+        git clone https://aur.archlinux.org/yay.git
+        cd yay
+        makepkg -si
+     YAOURT
+	$ sudo pacman -S --needed base-devel git wget yajl //dependencias
+	$ git clone https://aur.archlinux.org/package-query.git
+	$ cd package-query/
+	$ makepkg -si
+	$ cd ..
+	$ git clone https://aur.archlinux.org/yaourt.git
+	$ cd yaourt/
+	$ makepkg -si
+	$ cd ..
+	$ sudo rm -dR yaourt/ package-query/
+      AURMAN 
+	git clone https://aur.archlinux.org/aurman.git
+	cd aurman
+	makepkg -Acs
+		gpg --recv-keys 702353E0F7E48EDB
+	sudo pacman -U aurman-xxx.pkg.tar.xz
+      
+      VMWARE
+ 	pacman -S vmware-workstation
+	gpg --keyserver pgp.mit.edu --recv-keys F7E48EDB
+	aurman -S ncurses5-compat-libs
+	sudo sh-edition-version.release.architecture.bundle --console -I --eulas-agreed
+  yaourt -S vmware-tools
+  sudo systemctl start vmware-networks.service 
+  
+===== PROBLEMAS =========
+	Could not open /dev/vmmon: No such file or directory.
+        Please make sure that the kernel module `vmmon' is loaded.
+	#vmware-modconfig --console --install-all
+
+		  sudo systemctl daemon-reload
+sudo systemctl start vmware-usbarbitrator
+sudo systemctl start vmware-hostd
+
+
+
+====== RED ======
+	wpa_supplicant dialog
+	ifconfig wlp2s0 up
+	iwlist wlp2s0 scan
+	wpa_supplicant
+		wpa_passphrase libre >> /etc/wpa_supplicant.conf
+		wpa_supplicant -B -Dnl80211 -i wlp2s0 -c /etc/wpa_supplicant/libre.conf
+	//sin contrasenia 
+		iwconfig wlan0 essid "libre"
+	//con wep hexadecimal
+		iwconfig wlp2s0 essid "libre" key 0241baf34c
+	//con wep con assi
+		iwconfig wlp2s0 essid "libre" keys:contrasenia
+	//conexion wpa
+		wpa_supplicant
+	sudo dhcpcd wlan0
+
+
+       POSTGRESQL 
+	 
+	 sudo pacman -S postgresql
+	 sudo systemctl status postgresql 
+	 sudo su - postgres //iniciar sesion con usuario postgresql para admins
+	 initdb --locale en_US.UTF-8 -D /var/lib/postgres/data/  //inicializar el 
+         directorio de datos
+	 exit
+	 sudo systemctl start postgresql //inicializamos servicio
+	 sudo systemctl enable postgresql //habilitar al inicio
+	 createdb linuxhint //crear base de datos
+	 psql linuxmint	//iniciar sesion en base de satos
+
+	 sudo su postgres
+	 psql
+	 CREATE USER tizen WITH password 'tizensrl';
+	 CREATE DATABASE tizendb WITH OWNER tizen;
+
+
+       IMPREESOSA 
+	 gutenprint
+	 sudo usermod -a -G sys jkazuo55
+   http://localhost:631
+
+
+
+
+CONFIGURATION
+
+	HORA
+	  #tizselect
+	  #date --set "2019-06-10 20:30"
+	  #rm /etc/localtime
+	  #ln -s /usr/share/zoneinfo/America/La_Paz /etc/localtime
+    $ timedatectl list-timezones	  
+    #timedatectl set-timezone 'America/La_Paz'
+    #timedatectl set-ntp yes
+
+   SONIDO BEET
+	xset b off //disable beep on filesystem
+	# timedatectl set-time "2012-10-30 18:17:16" //ajustar reloj
+
+   TOUCHPAD
+	#pacman -S xf86-input-synaptics
+	#synclient TapButton1=1
+	#synclient TapButton2=2
+	#synclient TapButton3=3
+	//agregar en la primera seccion de inputclass
+	/usr/share/X11/xorg.conf.d/70-synaptics.conf
+        Option "TapButton1" "1"
+	Option "TapButton2" "2"
+	Option "TapButton3" "3"
+
+   VARIABLEENTORNO
+	export arch=x86_64
+   AUTOMONTADO
+	pacman -S dbus 
+	systemctl enable dbus
+	pacman -S thunar-volman gvfs gvfs-afc
+
+   TECLADO
+	setxkbmap -layout "us,es" -option "grp:alt_shift_toggle" //se cambia con alt + shift
+   BATERIA
+	cd ~/.config/awesome
+	git clone https://github.com/deficient/battery-widget.git
+	pacman -S acpid
+	sudo systemctl enable acpid
+	//buscamos Right widgets y agregamos en mytasklist
+	require("battery-widget") {},
+
+       
+	 THUNAR
+	 	//crear archivo bookmarks en
+	   touch .config/gtk-3.0/bookmarks
+		 //agregar carpeta
+		file://home/jkazuo55/Downloads Downloads
+		file://home/jkazuo55/Documents Documents
+		 
+	 APP PREDETERMINADA
+	 sudo pacman -S perl-file-mimeinfo
+	 mimeopen -d file
+
+	 TERMINAL
+	    pacman -S zsh
+		  chsh -s $(which zsh)
+		  yaourt -S oh-my-zsh
+		  cp /usr/share/oh-my-zsh/zshrc .zshrc
+
+
+	BASH
+            >promt
+                 $sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)"
+                 $vim .bashrc  //change theme OSH_THEME="powerline-multiline"
+           >color ls
+                 $vim .bashrc //add end "alias ls='ls --color=auto'" 
+
+		  
+
+* TUTORIALES
+
+   * PACMAN
+	pacman -Sy   //actualiza repositorios base de datos de los paquetes
+	pacman -Syu  //actualiza los paquetes
+	pacman -Syyu //forzado de sincronizacion
+	pacman -Ss   //buscar paquete
+	pacman -Si   //informacion de un paquete
+	pacman -Rs  //desintalar con sus dependencias
+ 	pacman -Qs  //paquetes instalados con pacman
+	pacman -Qi  //informacion app instalada
+
+   * SERVICIOS
+	systemctl --type=service
+	systemctl list-unit-files
+
+PROBLEMAS 
+   LIBRERIAS ICU 
+	curl -Lo /tmp/icu-61.1-1-x86_64.pkg.tar.xz https://archive.archlinux.org/packages/i/icu/icu-61.1-1-x86_64.pkg.tar.xz
+	tar --wildcards --no-anchored --warning=none -xf /tmp/icu-61.1-1-x86_64.pkg.tar.xz *libicudata.so.61* *libicui18n.so.61* *libicuuc.so.61*
+  	sudo mv /tmp/usr/lib/libicu*.so.61* /usr/lib
+	rm /tmp/icu-61.1-1-x86_64.pkg.tar.xz
+	rm -r /tmp/usr
+
+
+
+
+     WINE
+	  pacman -S wine --asdeps
+
+	VIRTUALBOX
+		pacman -Ss virtualbox
+		default 2 arch
+                pacman -S linux-headers
+                pacman -S virtualbox-guest-iso
+		sudo modprobe vboxdrv   //load module to the kernel
+                or fail
+                sudo modprobe --verbose --force-vermagic vboxdrv
+    sudo gpasswd -a jkazuo55 vboxusers
+
+	VAGRANT
+      pacman vagrant
+		  configure  https://puphpet.com/#create
+		  vagrant up
+      vagrant plugin install vagrant-vmware-desktop
+      vagrant plugin install vagrant-cucumber
+
+======== CONFIGURATIONS ========
+	brillo
+             echo 50 > /sys/class/backlight/intel_backlight/brightness
+
+
+======== ARCH-EXTRA ============
+   lamp
+         >install
+         #pacman -S apache php php-apache mariadb phpmyadmin
+         >config
+         #systemctl restart httpd
+         #mysql_install_db --user=mysql --basedir=/usr --datadir=/var/lib/mysql  //inicialize mariadb data directory
+         #systemctl enable mysqld
+         #systemctl start mysqld 
+         
+         #systemctl enable httpd
+   samba
+	 #yay -S samba gvfs-smb thunar-shares-plugin
+	 $mkdir -p ~/shared
+         #chown -R nobody.nobody ~/shared
+         #chmod -R 777 ~/shared
+	 touch /etc/samba/smb.conf
+	 > [global]
+   	   workgroup = MYGROUP
+   	   server string = Samba Server
+           server role = standalone server
+           log file = /var/log/samba/smb-log.%m
+           max log size = 50
+           dns proxy = no
+           map to guest = Bad User
+
+          [shared]
+          comment = Temporary file space
+          path = /home/jkazuo55/shared
+          read only = no
+          public = yes
+          browseable = yes
+          guest ok = yes
+          create mask = 777
+
+          #smbpasswd -a jkazuo55
+	  #systemctl start smb
+	  #systemctl enable smb
+
+
+
+
+     blutooth
+     pacman -S blueman
+     sudo systemctl enable bluetooth.service
+     sudo systemctl restart bluetooth.service
+
+     teamviewer
+     sudo systemctl stop teamviewerd.service
+     sudo teamviewer daemon stop
+     sudo teamviewer daemon start

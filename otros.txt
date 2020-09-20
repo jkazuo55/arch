@@ -1,0 +1,10 @@
+
+
+aplicacion grafica para controlar brillo de varias pantallas
+
+ yay brightness-controller
+
+controlar brillo de varias pantallas por terminal
+
+xrandr -q 
+xrandr --output LVDS-1 --brightness 0.7 //deve estar entre 0 y 1
