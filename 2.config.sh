@@ -126,7 +126,7 @@
   echo "habilitamos multilib en repositorios"
   vim /etc/pacman.conf
   echo "configuracion terminada"
-
+  pacman -Syyu --noconfirm
   #CONFIG EXTRA
   pacman -S --noconfirm extra/alsa-utils
   alsactl init  #activar sonido
@@ -147,4 +147,5 @@
  echo "CONFIGURACION TERMINADA!!!!"
  echo "========================================="
  
+ exit
 

@@ -6,7 +6,7 @@
     cd yay
     makepkg -si
     cd ..
-    rm -r yay
+    sudo rm -rf yay
  }
  function sistema {
     #UPDATE
@@ -47,7 +47,7 @@
     echo "INSTALAMOS WINDOW MANAGER (I3-gaps)"
     sudo pacman -S i3-gaps --noconfirm  #fork de i3
     sudo pacman -S i3blocks --noconfirm #estado de monitoreo para panel
-    sudo cp /etc/i3blocks.conf /home/jkazuo55/.config/i3/ 
+    #sudo cp /etc/i3blocks.conf /home/jkazuo55/.config/i3/ 
     sudo pacman -S rofi --noconfirm #menu de apps
     
     yay -S aur/dunst-git --noconfirm #notificador
@@ -57,7 +57,7 @@
     
     sudo pacman -S nitrogen --noconfirm #generador de fondo de pantalla
     echo "configuramos el incio automatico de i3-gaps"
-    echo "exec i3" > /home/jkazuo55/.xinitrc
+    echo "exec i3" >> /home/jkazuo55/.xinitrc
 
     #CONFIGURACION I3
     git clone "https://github.com/jkazuo55/i3.git" /home/jkazuo55/.config/i3/
