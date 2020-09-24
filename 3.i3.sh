@@ -55,9 +55,10 @@
     echo "################################"
     echo "################################"
     echo "################################"
-    
+
 
     yay -S aur/dunst-git --noconfirm #notificador
+    sudo pacman -S libnotify --noconfirm #notify-send "ejemplo"
     systemctl --user import-environment DISPLAY
     systemctl start --user dunst
     systemctl enable --user dunst
