@@ -2,46 +2,46 @@
 
  function programasArch {
   #archive formats
-  pacman -S --noconfirm p7zip p7zip-plugins rsync
+  sudo pacman -S --noconfirm p7zip p7zip-plugins rsync
   #compresors
-  pacman -S --noconfirm unrar tar file-roller unzip 
+  sudo pacman -S --noconfirm unrar tar file-roller unzip 
   #sistema 
-  pacman -S --noconfirm bash-completion 
-  pacman -S --noconfirm git
-  pacman -S --noconfirm lshw 
-  pacman -S --noconfirm xsensors 
-  pacman -S --noconfirm testdisk 
-  pacman -S --noconfirm tree 
-  pacman -S --noconfirm htop 
-  pacman -S --noconfirm gparted 
-  pacman -S --noconfirm pcmanfm
-  pacman -S --noconfirm feh 
-  pacman -S --noconfirm flameshot 
-  pacman -S --noconfirm simple-scan 
-  pacman -S --noconfirm brasero 
-  pacman -S --noconfirm mupdf 
+  sudo pacman -S --noconfirm bash-completion 
+  sudo pacman -S --noconfirm git
+  sudo pacman -S --noconfirm lshw 
+  sudo pacman -S --noconfirm xsensors 
+  sudo pacman -S --noconfirm testdisk 
+  sudo pacman -S --noconfirm tree 
+  sudo pacman -S --noconfirm htop 
+  sudo pacman -S --noconfirm gparted 
+  sudo pacman -S --noconfirm pcmanfm
+  sudo pacman -S --noconfirm feh 
+  sudo pacman -S --noconfirm flameshot 
+  sudo pacman -S --noconfirm simple-scan 
+  sudo pacman -S --noconfirm brasero 
+  sudo pacman -S --noconfirm mupdf 
   #browser
-  pacman -S --noconfirm firefox
-  pacman -S --noconfirm opera
+  sudo pacman -S --noconfirm firefox
+  sudo pacman -S --noconfirm opera
   #android 
-  pacman -S --noconfirm android-tools
+  sudo pacman -S --noconfirm android-tools
   #tex editors
-  pacman -S --noconfirm vim 
-  pacman -S --noconfirm geany
+  sudo pacman -S --noconfirm vim 
+  sudo pacman -S --noconfirm geany
   #impresora
-  pacman -S --noconfirm cups 
-  pacman -S --noconfirm aria2 
-  pacman -S --noconfirm curl 
-  pacman -S --noconfirm screenfetch 
+  sudo pacman -S --noconfirm cups 
+  sudo pacman -S --noconfirm aria2 
+  sudo pacman -S --noconfirm curl 
+  sudo pacman -S --noconfirm screenfetch 
 
 
-  pacman -S --noconfirm arp-scan
-  pacman -S --noconfirm gimp 
-  pacman -S --noconfirm inkscape 
-  pacman -S --noconfirm transmission-gtk 
-  pacman -S --noconfirm youtube-dl 
+  sudo pacman -S --noconfirm arp-scan
+  sudo pacman -S --noconfirm gimp 
+  sudo pacman -S --noconfirm inkscape 
+  sudo pacman -S --noconfirm transmission-gtk 
+  sudo pacman -S --noconfirm youtube-dl 
   #ordenar
-  pacman -S --noconfirm peek
+  sudo pacman -S --noconfirm peek
   #programacion
   #pacman -S netbeans composer nodejs-lts-erbium
 
@@ -55,7 +55,7 @@
   yay -S aur/ttf-ms-fonts --noconfirm
   yay -S aur/times-newer-roman --noconfirm
   #file manager
-  pacman -S ranger w3m --noconfirm
+  sudo pacman -S ranger w3m --noconfirm
   ranger --copy-config=all
   #program manager
   yay -S aur/pamac-aur #client de administracion de paquetes
