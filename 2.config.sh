@@ -21,7 +21,9 @@
 
  function lenguaje {
   echo "ESTABLECEMOS LA CONFIGURACION REGIONAL"
-  vim /etc/locale.gen
+  echo "vim /etc/locale.gen"
+  sed -i 's/#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/g' /etc/locale.gen
+  sed -i 's/#es_BO.UTF-8 UTF-8/es_BO.UTF-8 UTF-8/g' /etc/locale.gen
   echo ""
   echo "archivo configurado"
   echo ""
@@ -124,7 +126,9 @@
   echo "CONFIGURACION EXTRA"
   echo ""
   echo "habilitamos multilib en repositorios"
-  vim /etc/pacman.conf
+  echo "vim /etc/pacman.conf"
+  sed -i 's/#[multilib]/[multilib]/g' /etc/pacman.conf
+  sed -i 's/#Include = \/etc\/pacman.d\/mirrorlist/Include = \/etc\/pacman.d\/mirrorlist/g' /etc/pacman.conf
   echo "configuracion terminada"
   pacman -Syyu --noconfirm
   #CONFIG EXTRA
@@ -147,6 +151,7 @@
  echo "CONFIGURACION TERMINADA!!!!"
  echo "========================================="
  
+ exit
  exit
  exit
 

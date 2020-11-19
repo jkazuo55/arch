@@ -136,3 +136,9 @@ function packfonts {
 
 
 programasArch
+impresora
+confPacman
+terminal
+touchpad
+packfonts
+

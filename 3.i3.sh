@@ -1,4 +1,5 @@
 #!/bin/bash
+ #ejecutar usuario normal $sh 3.config.sh
 
  function yay {
     echo "instalando yay"
