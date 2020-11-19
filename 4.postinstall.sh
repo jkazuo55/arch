@@ -23,7 +23,8 @@
   #browser
   pacman -S --noconfirm firefox
   pacman -S --noconfirm opera
-  
+  #android 
+  pacman -S --noconfirm android-tools
   #tex editors
   pacman -S --noconfirm vim 
   pacman -S --noconfirm geany
@@ -39,13 +40,15 @@
   pacman -S --noconfirm inkscape 
   pacman -S --noconfirm transmission-gtk 
   pacman -S --noconfirm youtube-dl 
-
+  #ordenar
+  pacman -S --noconfirm peek
   #programacion
   #pacman -S netbeans composer nodejs-lts-erbium
 
   #pacman -S thunar thunar-archive-plugin thunar-volman terminator okular cmus cclive clementine wps-office-mui-es-mx whatsapp-nativefier caprine handbrake wps-office-extension-spanish-dictionary translate-shell
 
-  #browser
+  
+ #browser
   yay -S aur/google-chrome-dev --noconfirm
   #fonts
   yay -S aur/ttf-windows --noconfirm
@@ -69,6 +72,9 @@
   #yay gromit-mpx-git # pintar pantalla
   #cp /usr/etc/gromit-mpx/gromit-mpx.cfg ~/.config/gromit-mpx.cfg
   
+  #otros
+  yay -S aur/rename --noconfirm
+
   #programacion
   yay -S community/code --noconfirm
   #maven intellij-idea-community-edition simple-http-server postman
@@ -121,6 +127,11 @@ function touchpad {
     echo "Option "TapButton3" "3""
     sudo vim /usr/share/X11/xorg.conf.d/70-synaptics.conf
 
+}
+
+function packfonts {
+   yay -S aur/font-manager 
+	 yay -S aur/ttf-google-fonts-git
 }
 
 
