@@ -2,7 +2,7 @@
 
  function programasArch {
   #archive formats
-  sudo pacman -S --noconfirm p7zip p7zip-plugins rsync
+  sudo pacman -S --noconfirm p7zip rsync
   #compresors
   sudo pacman -S --noconfirm unrar tar file-roller unzip 
   #sistema 
@@ -58,7 +58,7 @@
   sudo pacman -S ranger w3m --noconfirm
   ranger --copy-config=all
   #program manager
-  yay -S aur/pamac-aur #client de administracion de paquetes
+  #yay -S aur/pamac-aur #client de administracion de paquetes
 
   #multimedia
   #yay -S spotify
