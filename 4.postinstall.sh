@@ -1,6 +1,8 @@
 #! /bin/bash
 
  function programasArch {
+
+  sudo pacman -Syyyyu --noconfirm	 
   #archive formats
   sudo pacman -S --noconfirm p7zip rsync
   #compresors
@@ -102,7 +104,7 @@
   echo "CONFIGURAMOS PACMAN"
   echo ""
   echo "descomentamos Color,TotalDownload"
-  vim /etc/pacman.conf
+  sudo vim /etc/pacman.conf
   echo "edision terminada"
  }
 
@@ -111,12 +113,12 @@ function terminal {
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)"
     echo ""
     echo "change theme OSH_THEME="powerline-multiline""
-    vim /home/jkazuo55/.bashrc
+    sudo vim /home/jkazuo55/.bashrc
 }
 
 function touchpad {
     echo "instalamos touchpad"
-    sudo pacman -S xf86-input-synaptics
+    sudo pacman -S xf86-input-synaptics --noconfirm
 
     #synclient TapButton1=1
     #synclient TapButton2=2
@@ -130,7 +132,7 @@ function touchpad {
 }
 
 function packfonts {
-   yay -S aur/font-manager 
+   yay -S aur/font-manager --noconfirm
 	 yay -S aur/ttf-google-fonts-git
 }
 
@@ -140,5 +142,5 @@ impresora
 confPacman
 terminal
 touchpad
-packfonts
+#packfonts
 
