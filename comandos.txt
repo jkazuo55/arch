@@ -1,3 +1,11 @@
+yay -S inxi-git
+yay install hardinfo
+pacman -S lshw
+
+lspci | grep VGA
+inxi -Gx
+lshw -class display
+
 
 
 aplicacion grafica para controlar brillo de varias pantallas

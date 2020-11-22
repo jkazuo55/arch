@@ -36,6 +36,8 @@
   sudo pacman -S --noconfirm curl 
   sudo pacman -S --noconfirm screenfetch 
 
+  sudo pacman -S --noconfirm community/arandr 
+
 
   sudo pacman -S --noconfirm arp-scan
   sudo pacman -S --noconfirm gimp 
@@ -199,6 +201,83 @@ function samba {
 
 }
 
+function virtualbox {
+  sudo pacman -S virtualbox
+  #default 2 arch
+  sudo pacman -S linux-headers --noconfirm
+  sudo pacman -S virtualbox-guest-iso
+  sudo modprobe vboxdrv   #//load module to the kernel
+  sudo modprobe --verbose --force-vermagic vboxdrv
+  sudo gpasswd -a jkazuo55 vboxusers
+}
+
+function vmware { 
+  sudo pacman -S linux linux-headers --noconfirm
+  yay -S --noconfirm --needed ncurses5-compat-libs
+  yay -S --noconfirm --needed  vmware-workstation
+  #gpg --keyserver pgp.mit.edu --recv-keys F7E48EDB
+  #sudo sh-edition-version.release.architecture.bundle --console -I --eulas-agreed
+  yay -S vmware-tools --noconfirm
+
+
+  #reinicir y luego 
+  #sudo modprobe -a vmw_vmci vmmon
+
+  #sudo systemctl start vmware-networks
+  #sudo systemctl enable vmware-networks
+
+}
+
+function lamp {
+  #apache
+  sudo pacman -Syu
+  sudo pacman -S apache --noconfirm  #instalamos apache 2
+  sudo systemctl restart httpd   #reiniciamos servicio httpd
+  #php
+  sudo pacman -S php php-apache --noconfirm #instalamos php y php-apache
+  #mysql
+  sudo pacman -S mysql --noconfirm  #instalamos mysql
+  sudo mysql_install_db --user=mysql --basedir=/usr --datadir=/var/lib/mysql #ejecutamos el demonio de mysql
+  sudo systemctl enable mysqld #habilitamos mysqld
+  sudo systemctl start mysqld.service #reiniciamos mysqld
+  #sudo systemctl status mysqld #verificamos su estado
+  sudo mysql_secure_installation #configuramos la contrasenia
+
+  #composer
+  sudo pacman -S composer --noconfirm
+
+  #composer
+  sudo pacman -S phpmyadmin --noconfirm
+
+
+  :<<-!
+# Use for PHP 7.x:
+LoadModule php7_module modules/libphp7.so
+AddHandler php7-script php
+Include conf/extra/php7_module.conf
+
+
+# para cargar los index.php si se encuentran en el directorio
+<IfModule dir_module>
+  <IfModule php7_module>
+        DirectoryIndex index.php index.html
+        <FilesMatch "\.php$">
+           SetHandler application/x-httpd-php
+        </FilesMatch>
+        <FilesMatch "\.phps$">
+           SetHandler application/x-httpd-php-source
+        </FilesMatch>
+   </IfModule>
+</IfModule>
+
+!
+
+
+}
+
+function moc {
+  sudo pacman -S python-gdal python-pip moc --noconfirm
+}
 
 programasArch
 impresora
@@ -208,4 +287,10 @@ touchpad
 #packfonts
 configextra
 gtktheme
-samba
+sambai
+virtualbox
+vmware
+lamp
+moc
+
+
