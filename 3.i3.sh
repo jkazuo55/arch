@@ -32,11 +32,22 @@
     sudo pacman -S slim slim-themes archlinux-themes-slim --noconfirm
     sudo systemctl enable slim.service
     echo ""
+
+    #configuracion
+    sudo cp /etc/slim.conf /etc/slim.conf.backup #sacamos backup
+    sudo rm /etc/slim.conf #eliminamos el archivo
+    #themes
+    #/usr/share/slim/themes
+    git clone https://github.com/jkazuo55/dotfiles.git
+    sudo cp dotfiles/slim.conf /etc/
+    sudo rm -rf dotfiles
   }
 
   function windowsManager {
     #PAQUETES EXTRAS
     sudo pacman -S acpi --noconfirm #estado de la bateria
+    sudo pacman -S community/acpilight --noconfirm #brillo de apntalla
+    sudo pacman -S community/awesome-terminal-fonts --noconfirm #baterria
     sudo pacman -S neofetch --noconfirm #informacion del sistema
     sudo pacman -S feh --noconfirm #visor de imagenes
     sudo pacman -S playerctl --noconfirm #mostrar cancion actual
@@ -72,9 +83,20 @@
     git clone "https://github.com/jkazuo55/i3.git" /home/jkazuo55/.config/i3/
     #CONFIGURACION I3BLOCKS
   }
+
+  function dunst {
+    sudo pacman -S libnotify dunst --noconfirm
+    systemctl --user import-environment DISPLAY
+    systemctl status --user dunst
+    systemctl start --user dunst
+    systemctl enable --user dunst
+    #iconos notificaciones
+    yay -S aur/paper-icon-theme-git --noconfirm
+  }
   
 yay
 sistema
 servidorGrafico
 sessionManager
 windowsManager
+dunst

@@ -48,8 +48,12 @@
   #pacman -S netbeans composer nodejs-lts-erbium
 
   #pacman -S thunar thunar-archive-plugin thunar-volman terminator okular cmus cclive clementine wps-office-mui-es-mx whatsapp-nativefier caprine handbrake wps-office-extension-spanish-dictionary translate-shell
-
-  
+  #descargadores
+  yay -S aur/megabasterd-bin --noconfirm
+  #entretenimiento
+  sudo pacman -S --noconfirm telegram-desktop
+  yay -S --noconfirm aur/whatsapp-nativefier-dark
+    
  #browser
   yay -S aur/google-chrome-dev --noconfirm
   #fonts
@@ -136,6 +140,65 @@ function packfonts {
 	 yay -S aur/ttf-google-fonts-git
 }
 
+function configextra {
+  sudo pacman -S dbus --noconfirm
+  sudo systemctl enable dbus
+  #sudo pacman -S gvfs gvfs-afc #thunar-volman  
+}
+
+function gtktheme {
+  #listar iconos y temas
+  #ls /usr/share/icons/
+  #ls /usr/share/themes/
+  echo "instalar iconos"
+  #sudo pacman -S papirus-icon-theme 
+  yay -S flat-remix --noconfirm
+  echo "instalar themas" 
+  yay -S flat-remix-gtk --noconfirm
+  #yay -S numix-gtk-theme-git
+  #echo "modificar Papirus-Dark y Numix"
+  echo "Flat-Remix-Red-Dark Flat-Remix-GTK-Blue-Darkest"
+
+  sudo vim /usr/share/gtk-3.0/settings.ini
+  sudo vim /usr/share/gtk-2.0/gtkrc
+  echo "terminado"
+
+}
+
+function samba {
+  #ejecutar con sudo sudo bash samba.sh
+
+  yay -S samba gvfs-smb --noconfirm
+  #thunar-shares-plugin  //paquete para thunar       
+  mkdir -p ~/shared
+  sudo chown -R nobody.nobody ~/shared
+  sudo chmod -R 777 ~/shared
+  sudo touch /etc/samba/smb.conf
+
+  echo "[global]
+  workgroup = MYGROUP
+  server string = Samba Server
+  server role = standalone server
+  log file = /var/log/samba/smb-log.%m
+  max log size = 50
+  dns proxy = no
+  map to guest = Bad User
+
+  [shared]
+  comment = Temporary file space
+  path = /home/jkazuo55/shared
+  read only = no
+  public = yes
+  browseable = yes
+  guest ok = yes
+  create mask = 777" >> /etc/samba/smb.conf
+
+  sudo smbpasswd -a jkazuo55
+  sudo systemctl start smb
+  sudo systemctl enable smb
+
+}
+
 
 programasArch
 impresora
@@ -143,4 +206,6 @@ confPacman
 terminal
 touchpad
 #packfonts
-
+configextra
+gtktheme
+samba
