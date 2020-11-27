@@ -61,6 +61,10 @@
     sudo pacman -S i3blocks --noconfirm #estado de monitoreo para panel
     #sudo cp /etc/i3blocks.conf /home/jkazuo55/.config/i3/ 
     sudo pacman -S rofi --noconfirm #menu de apps
+    #config rofi
+    git clone "https://github.com/jkazuo55/dotfiles.git"
+    cp -r dotfiles/rofi ~/.config/
+    rm -rf dotfiles
     
     echo "################################"
     echo "################################"
@@ -92,6 +96,10 @@
     systemctl enable --user dunst
     #iconos notificaciones
     yay -S aur/paper-icon-theme-git --noconfirm
+
+    git clone "https://github.com/jkazuo55/dotfiles.git"
+    sudo cp -r dotfiles/dunst/dunstrc ~/.config/
+    rm -rf dotfiles
   }
   
 yay

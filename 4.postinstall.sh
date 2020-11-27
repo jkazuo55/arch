@@ -86,6 +86,8 @@
   #programacion
   yay -S community/code --noconfirm
   #maven intellij-idea-community-edition simple-http-server postman
+
+  pacman -S mpv --noconfirm
  }
  
   #yay jdk9
@@ -277,6 +279,7 @@ Include conf/extra/php7_module.conf
 
 function moc {
   sudo pacman -S python-gdal python-pip moc --noconfirm
+  cp /usr/share/doc/moc/config.example ~/.moc/config
 }
 
 programasArch
