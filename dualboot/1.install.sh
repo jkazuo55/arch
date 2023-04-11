@@ -24,7 +24,7 @@
   lsblk -Spo NAME,MODEL,SIZE,VENDOR,RM
   echo ""
   echo "verificamos las particiones creadas"
-  lsblk -po NAME,FSTYPE,LABEL,MOUNTPOINT /dev/sda
+  lsblk -po NAME,FSTYPE,LABEL,MOUNTPOINT /dev/sdb
   echo ""
  }
 
@@ -34,16 +34,16 @@
   #mkfs.fat -F32 -n "EFI" /dev/sda1
   echo ""
   echo "formateamos particion swap"
-  mkswap -L "SWAP" /dev/sda6
+  mkswap -L "SWAP" /dev/sdb5
   echo ""
   echo "formateamos particion root"
-  mkfs.ext4 -F -L "root" /dev/sda4
+  mkfs.ext4 -F -L "root" /dev/sdb6
   echo ""
   echo "formateamos particion home"
-  mkfs.ext4 -F -L "home" /dev/sda5
+  mkfs.ext4 -F -L "home" /dev/sdb7
   echo ""
   echo "verificamos las particiones que emos formateado"
-  lsblk -po NAME,FSTYPE,LABEL,MOUNTPOINT /dev/sda
+  lsblk -po NAME,FSTYPE,LABEL,MOUNTPOINT /dev/sdb
   echo ""
  }
 
@@ -51,7 +51,7 @@
   echo "PREPARAR INSTALACION"
   echo ""
   echo "Montamos la raiz"
-  mount /dev/sda4 /mnt
+  mount /dev/sdb6 /mnt
   echo "raiz montadada en /mnt"
   echo ""
   echo "creamon directorio home"
@@ -59,11 +59,11 @@
   echo "directorio home creada en /mnt/home"
   echo ""
   echo "montamos home"
-  mount /dev/sda5 /mnt/home
+  mount /dev/sdb7 /mnt/home
   echo "directorio home montado en /mnt/home"
   echo ""
   echo "activamos swap"
-  swapon /dev/sda6
+  swapon /dev/sdb5
   echo "swap activado"
   echo ""
   echo "creamos directorio efi"
@@ -71,19 +71,19 @@
   echo "directorio efi creado en /mnt/efi"
   echo ""
   echo "montamos efi"
-  mount /dev/sda1 /mnt/boot
+  mount /dev/sdb1 /mnt/boot
   echo "efi montdo en /mnt/efi"
   echo ""
   echo "verificamos la informacion de montado"
   echo ""
-  lsblk -po NAME,FSTYPE,LABEL,MOUNTPOINT /dev/sda
+  lsblk -po NAME,FSTYPE,LABEL,MOUNTPOINT /dev/sdb
   echo ""
  }
 
  function instalarSistema {
   echo "INSTALACION DE SISTEMA BASE"
   echo ""
-  pacstrap /mnt base base-devel linux linux-firmware grub efibootmgr dhcpcd gvfs-mtp gvfs-afc gvfs-gphoto2 vim git netctl dialog termite tmux
+  pacstrap /mnt base base-devel linux linux-firmware grub efibootmgr dhcpcd gvfs-mtp gvfs-afc gvfs-gphoto2 vim git netctl dialog tmux
   echo "instalacion terminada con exito"
  }
 

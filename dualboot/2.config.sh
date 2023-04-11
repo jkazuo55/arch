@@ -96,12 +96,12 @@
   echo "timeout 10" >> /boot/loader/loader.conf
   echo "editor 0" >> /boot/loader/loader.conf
   #configuramos entrada defecto arch
-  #echo $(blkid -s PARTUUID -o value /dev/sda4) > /boot/loader/entries/arch.conf
+  #echo $(blkid -s PARTUUID -o value /dev/sdb6) > /boot/loader/entries/arch.conf
   #modificamos el archivo
   echo "title ArchLinux" > /boot/loader/entries/arch.conf
   echo "linux /vmlinuz-linux" > /boot/loader/entries/arch.conf
   echo "initrd /initramfs-linux.img" > /boot/loader/entries/arch.conf
-  echo "options root=PARTUUID=`echo $(blkid -s PARTUUID -o value /dev/sda4)`" > /boot/loader/entries/arch.conf
+  echo "options root=PARTUUID=`echo $(blkid -s PARTUUID -o value /dev/sdb6)`" > /boot/loader/entries/arch.conf
 
  }
 
