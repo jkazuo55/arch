@@ -5,19 +5,19 @@
 #   timedatectl list-timezones | grep La_Paz
 #   echo ""
 
-  echo "ahora establecemos la zona horaria"
-  ln -sf /usr/share/zoneinfo/America/La_Paz /etc/localtime
-  echo "zona horaria establecida"
-  echo ""
+#   echo "ahora establecemos la zona horaria"
+#   ln -sf /usr/share/zoneinfo/America/La_Paz /etc/localtime
+#   echo "zona horaria establecida"
+#   echo ""
 
-  echo "configuramos el reloj "
-  hwclock -w
-  echo ""
+#   echo "configuramos el reloj "
+#   hwclock -w
+#   echo ""
 
-  echo "actulizamos el reloj del sistema"
-  timedatectl set-ntp true
-  echo "Reloj configurado y actualizado satisfactoriamente"
-  echo ""
+#   echo "actulizamos el reloj del sistema"
+#   timedatectl set-ntp true
+#   echo "Reloj configurado y actualizado satisfactoriamente"
+#   echo ""
 
  }
 
@@ -64,6 +64,7 @@
  }
 
  function loadkeys {
+    echo "cargamos loadkeys"
     loadkeys /usr/share/kbd/keymaps/i386/qwerty/us.map.gz
  }
 
