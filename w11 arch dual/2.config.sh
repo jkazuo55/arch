@@ -1,6 +1,6 @@
 #!/bin/bash
 
- function configClock {
+#  function configClock {
 #   echo "Listamos los timezones"
 #   timedatectl list-timezones | grep La_Paz
 #   echo ""
@@ -19,7 +19,7 @@
 #   echo "Reloj configurado y actualizado satisfactoriamente"
 #   echo ""
 
- }
+#  }
 
   function datetime {
     echo "configuracion de hora y fecha"
@@ -157,7 +157,7 @@
     nmcli wlan0 wifi connect libre password holamundo
  }
 
-configClock
+# configClock
 datetime
 languaje
 loadkeys
