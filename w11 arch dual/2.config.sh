@@ -143,6 +143,10 @@
     systemctl enable NetworkManager.service
  }
 
+ function connectWifi {
+    nmcli device wlan0 connect libre password holamundo
+ }
+
  function installGrub {
   echo "install and config grub efi"
   pacman -S grub efibootmgr dosfstools mtools 
@@ -151,10 +155,6 @@
   pacman -S os-prober 
   grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=grub_uefi --recheck 
   grub-mkconfig -o /boot/grub/grub.cfg
- }
-
- function connectWifi {
-    nmcli wlan0 wifi connect libre password holamundo
  }
 
 # configClock

@@ -94,7 +94,7 @@
 formatDisk
 prepareInstalation
 datetime
-fastrepository
+# fastrepository
 installBase
 configSystem
 cp 2.config.sh /mnt/root/
