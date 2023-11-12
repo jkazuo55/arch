@@ -63,7 +63,7 @@
 
  }
 
- function loadkeys {
+ function loadkeysHelper {
     echo "cargamos loadkeys"
     loadkeys /usr/share/kbd/keymaps/i386/qwerty/us.map.gz
  }
@@ -160,7 +160,7 @@
 # configClock
 datetime
 languaje
-loadkeys
+loadkeysHelper
 hostname
 configNetwork
 configAccounts
