@@ -2,7 +2,7 @@
 
  function formatDisk {
 
-  echo "formateamos particion root"
+  echo "=====> formateamos particion root"
   mkfs.ext4 -F -L "root" /dev/sdb4
   echo ""
 
@@ -10,7 +10,7 @@
   # mkfs.ext4 -F -L "home" /dev/sdb7
   # echo ""
 
-  echo "formateamos particion swap"
+  echo "=====> formateamos particion swap"
   mkswap -L "SWAP" /dev/sdb5
   echo ""
 
@@ -86,10 +86,9 @@
   echo "fstab generado en /mnt/etc/fstab"
   echo ""
 
-  echo "comprobamos que el fichero fue creado correctamente"
-  echo ""
-  cat /mnt/etc/fstab
-  echo ""
+  # echo "comprobamos que el fichero fue creado correctamente"
+  # cat /mnt/etc/fstab
+  # echo ""
  }
 
 formatDisk
@@ -98,12 +97,11 @@ datetime
 fastrepository
 installBase
 configSystem
-
- cp 2.config.sh /mnt/root/
- arch-chroot /mnt/
- swapoff -a
- umount -R /mnt
- reboot
+cp 2.config.sh /mnt/root/
+arch-chroot /mnt/
+swapoff -a
+umount -R /mnt
+reboot
 
 
 

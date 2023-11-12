@@ -150,19 +150,20 @@
   grub-mkconfig -o /boot/grub/grub.cfg
  }
 
- reloj
- lenguaje
- red
- configRoot
- grubEfi
- configUser
- otrosProgramas
- configExtra
- echo "========================================="
- echo "CONFIGURACION TERMINADA!!!!"
- echo "========================================="
- 
- exit
- exit
- exit
+ function connectWifi {
+    nmcli wlan0 wifi connect libre password holamundo
+ }
 
+configClock
+datetime
+languaje
+loadkeys
+hostname
+configNetwork
+configAccounts
+extraconfig
+others
+connectWifi
+installGrub
+utilities
+echo("===========finiched=======")
