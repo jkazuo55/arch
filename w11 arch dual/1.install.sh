@@ -73,7 +73,7 @@
   echo "INSTALACION DE SISTEMA BASE"
   echo ""
 
-  pacstrap -i /mnt base base-devel linux linux-firmware linux-headers dhcpcd gvfs-mtp gvfs-afc gvfs-gphoto2 vim git netctl dialog tmux intel-ucode sudo networkmanager pulseaudio nano
+  pacstrap -i /mnt base base-devel linux linux-firmware linux-headers dhcpcd gvfs-mtp gvfs-afc gvfs-gphoto2 vim git netctl dialog tmux intel-ucode sudo networkmanager nano
   echo "instalacion terminada con exito"
  }
 

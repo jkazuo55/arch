@@ -138,11 +138,13 @@
  }
 
  function others {
+    echo "enable services"
     systemctl enable dhcpcd.service
     systemctl enable NetworkManager.service
  }
 
  function installGrub {
+  echo "install and config grub efi"
   pacman -S grub efibootmgr dosfstools mtools 
   vim /etc/default/grub 
   # descoment line GRUB_DISABLE_OS_PROBER=false
@@ -167,4 +169,3 @@ others
 connectWifi
 installGrub
 utilities
-echo("===========finiched=======")
