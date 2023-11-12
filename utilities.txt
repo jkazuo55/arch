@@ -1,0 +1,6 @@
+>>>> conect to internt archlinux to intall 
+
+iwctl
+station wlan0 get-networks 
+station wlan0 connect libre 
+exit 

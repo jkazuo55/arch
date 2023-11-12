@@ -1,135 +1,103 @@
 #!/bin/bash
 
- function logo {
-   clear
+ function formatDisk {
 
-   echo """
+  echo "formateamos particion root"
+  mkfs.ext4 -F -L "root" /dev/sdb4
+  echo ""
 
- ___           _        _ _      _             _     
-|_ _|_ __  ___| |_ __ _| | |    / \   _ __ ___| |__  
- | || '_ \/ __| __/ _| | | |   / _ \ | '__/ __| '_ \ 
- | || | | \__ \ || (_| | | |  / ___ \| | | (__| | | |
-|___|_| |_|___/\__\__,_|_|_| /_/   \_\_|  \___|_| |_|
-       
-         By. @jkazuo55 | 2020
-  """;
-  }
+  # echo "formateamos particion home"
+  # mkfs.ext4 -F -L "home" /dev/sdb7
+  # echo ""
 
- function verificacionDisco {
-  echo "VERIFICACION DISCO"
-  echo "Constamos tabla de particiones"
-  parted -l | egrep "Model|/dev/sd/msdos/gpt"
-  echo ""
-  echo "identificamos el dispositivo de almacenamiento"
-  lsblk -Spo NAME,MODEL,SIZE,VENDOR,RM
-  echo ""
-  echo "verificamos las particiones creadas"
-  lsblk -po NAME,FSTYPE,LABEL,MOUNTPOINT /dev/sdb
-  echo ""
- }
-
- function formatearDisco {
-  echo "FORMATEO DISCO"
-  echo "formateamos particion uefi"
-  #mkfs.fat -F32 -n "EFI" /dev/sda1
-  echo ""
   echo "formateamos particion swap"
   mkswap -L "SWAP" /dev/sdb5
   echo ""
-  echo "formateamos particion root"
-  mkfs.ext4 -F -L "root" /dev/sdb6
-  echo ""
-  echo "formateamos particion home"
-  mkfs.ext4 -F -L "home" /dev/sdb7
-  echo ""
-  echo "verificamos las particiones que emos formateado"
-  lsblk -po NAME,FSTYPE,LABEL,MOUNTPOINT /dev/sdb
-  echo ""
+
  }
 
- function prepararInstalacion {
-  echo "PREPARAR INSTALACION"
-  echo ""
+ function prepareInstalation {
+
   echo "Montamos la raiz"
-  mount /dev/sdb6 /mnt
+  mount /dev/sdb4 /mnt
   echo "raiz montadada en /mnt"
   echo ""
+
   echo "creamon directorio home"
   mkdir -p /mnt/home
   echo "directorio home creada en /mnt/home"
   echo ""
-  echo "montamos home"
-  mount /dev/sdb7 /mnt/home
-  echo "directorio home montado en /mnt/home"
-  echo ""
+
+  # echo "montamos home"
+  # mount /dev/sdb7 /mnt/home
+  # echo "directorio home montado en /mnt/home"
+  # echo ""
+
   echo "activamos swap"
   swapon /dev/sdb5
   echo "swap activado"
   echo ""
+
   echo "creamos directorio efi"
-  mkdir -p /mnt/boot
-  echo "directorio efi creado en /mnt/efi"
+  mkdir -p /mnt/boot/efi
+  echo "directorio efi creado en /mnt/boot/efi"
   echo ""
+
   echo "montamos efi"
-  mount /dev/sdb1 /mnt/boot
-  echo "efi montdo en /mnt/efi"
+  mount /dev/sdb1 /mnt/boot/efi
+  echo "efi montado en /mnt/boot/efi"
   echo ""
-  echo "verificamos la informacion de montado"
-  echo ""
-  lsblk -po NAME,FSTYPE,LABEL,MOUNTPOINT /dev/sdb
-  echo ""
+
  }
 
- function instalarSistema {
+ function datetime {
+    echo "configuracion de hora y fecha"
+    timedatectl status
+
+    # listar zonas horarias
+    # timedatectl list-timezones
+       
+    echo "change timezone"
+    timedatectl set-timezone America/La_Paz
+
+ }
+
+ function fastrepository {
+  cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
+  pacman -Sy 
+  pacman -S pacman-contrib --noconfirm 
+  rankmirrors -n 10 /etc/pacman.d/mirrorlist.bak > /etc/pacman.d/mirrorlist
+ }
+
+ function installBase {
   echo "INSTALACION DE SISTEMA BASE"
   echo ""
-  pacstrap /mnt base base-devel linux linux-firmware grub efibootmgr dhcpcd gvfs-mtp gvfs-afc gvfs-gphoto2 vim git netctl dialog tmux
+
+  pacstrap -i /mnt base base-devel linux linux-firmware linux-headers dhcpcd gvfs-mtp gvfs-afc gvfs-gphoto2 vim git netctl dialog tmux intel-ucode sudo networkmanager pulseaudio nano
   echo "instalacion terminada con exito"
  }
 
- function configSistema {
+ function configSystem {
   echo "CONFIGURACION DEL SISTEMA"
   echo ""
+
   echo "generar fichero fstab"
   genfstab -U /mnt >> /mnt/etc/fstab
   echo "fstab generado en /mnt/etc/fstab"
   echo ""
+
   echo "comprobamos que el fichero fue creado correctamente"
   echo ""
   cat /mnt/etc/fstab
   echo ""
  }
 
-
- logo
- verificacionDisco
- formatearDisco
- prepararInstalacion
- instalarSistema
- configSistema
-
- echo "==================================================="
- echo "Instalacion y Configuracion Primera parte Terminado"
- echo "==================================================="
- echo ""
-
- echo """
- "copiamos 2do archivo de instalacion config.sh"
- #cp config.sh /mnt/root/
- 
- "Ahora nos pasamos al otro sistema" 
- #arch-chroot /mnt
-
- "apagamos swap"
- #swapoff -a
- 
- "desmontamos todo"
- #umount -R /mnt
- 
- "reiniciamos todo y extraemos pendrive!!!!!!!!!!!"
- #reboot
-
- """;
+formatDisk
+prepareInstalation
+datetime
+fastrepository
+installBase
+configSystem
 
  cp 2.config.sh /mnt/root/
  arch-chroot /mnt/
