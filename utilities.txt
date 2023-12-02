@@ -4,3 +4,10 @@ iwctl
 station wlan0 get-networks 
 station wlan0 connect libre 
 exit 
+
+iwctl --passphrase holamundo station wlan0 connect libre
+
+
+
+>>>>>>> networkmanager 
+nmtui 

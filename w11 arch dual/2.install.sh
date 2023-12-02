@@ -1,25 +1,44 @@
 #!/bin/bash
 
-#  function configClock {
+ function configClock {
 #   echo "Listamos los timezones"
 #   timedatectl list-timezones | grep La_Paz
 #   echo ""
 
-#   echo "ahora establecemos la zona horaria"
-#   ln -sf /usr/share/zoneinfo/America/La_Paz /etc/localtime
-#   echo "zona horaria establecida"
-#   echo ""
+  echo "ahora establecemos la zona horaria"
+  ln -sf /usr/share/zoneinfo/America/La_Paz /etc/localtime
+  echo "zona horaria establecida"
+  echo " "
 
-#   echo "configuramos el reloj "
-#   hwclock -w
-#   echo ""
+  echo "configuramos el reloj "
+  hwclock --systohc
+  echo ""
+  echo " "
 
-#   echo "actulizamos el reloj del sistema"
-#   timedatectl set-ntp true
-#   echo "Reloj configurado y actualizado satisfactoriamente"
-#   echo ""
+  echo "actulizamos el reloj del sistema"
+  timedatectl set-ntp true
+  echo "Reloj configurado y actualizado satisfactoriamente"
+  echo ""
 
-#  }
+ }
+
+ function asynctime {
+   pacman -S ntp --noconfirm
+   sudo systemctl enable ntpd
+   sudo systemctl start ntpd
+   sudo ntpdate pool.ntp.org
+ }
+
+# create swap file 
+ function swapconfig {
+   fallocate -l 8GB /swap_file
+   chmod 600 /swap_file
+   mkswap /swap_file
+   swapon /swap_file
+   echo " " >> /etc/fstab
+   echo "# Swap file setup" >> /etc/fstab
+   echo "/swap_file      none     swap       defaults       0        0 " >> /etc/fstab
+ }
 
   function datetime {
     echo "configuracion de hora y fecha"
@@ -90,13 +109,36 @@
  function utilities {
 
   echo "instalamos programs extras"
+  pacman -S dialog --noconfirm
   pacman -S netctl --noconfirm
   pacman -S wpa_supplicant --noconfirm
   pacman -S net-tools --noconfirm
   pacman -S ttf-{dejavu,hack,roboto,liberation} --needed --noconfirm
+
+   # Bluetooth 
+   pacman -S bluez bluez-tuils pulseaudio-bluetooth reflector --noconfirm
+   systemctl enable bluetooth
+   # impresora Common Unix Printing System
+   pacman -S cups --noconfirm
+
+   # servidores espejos
+   pacman -S reflector --noconfirm
+
+   # networkmanager
+   pacman -S network-manager-applet --noconfirm
+
+   # wepa_supplicant
+   pacman -S wireless_tools wpa_supplicant --noconfirm
+
+   # manipulate directories and files
+   pacman -S xdg-user-dirs xdg-utils --noconfirm
+   
+   
   echo "" 
 
  }
+
+ 
 
  function configAccounts {
 
@@ -153,9 +195,26 @@
   vim /etc/default/grub 
   # descoment line GRUB_DISABLE_OS_PROBER=false
   pacman -S os-prober 
-  grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=grub_uefi --recheck 
+  grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB    --recheck 
   grub-mkconfig -o /boot/grub/grub.cfg
  }
+
+ function videonvidia {
+    pacman -S nvidia nvidia-utils nvidia-settings
+}
+
+function videointel {
+    pacman -S xf86-video-intel
+}
+
+function displaymanager {
+    pacman -S ly --noconfirm
+    systemctl enable ly.service
+    # files for custom
+    # vim /etc/ly/config.ini 
+    # vim /usr/lib/systemd/system/ly.service
+
+}
 
 # configClock
 datetime
