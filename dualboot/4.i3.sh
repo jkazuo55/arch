@@ -2,6 +2,7 @@
 #ejecutar usuario normal $sh 3.config.sh
 
 function yay {
+    sudo pacman -Syyyu --noconfirm
     echo "instalando yay"
     git clone "https://aur.archlinux.org/yay.git"
     cd yay
@@ -10,21 +11,12 @@ function yay {
     sudo rm -rf yay
 }
 
-function sistema {
-    #UPDATE
-    echo "ACTUALIZAMOS SISTEMA"
-    sudo pacman -Syyyu --noconfirm
-    echo ""
-}
-
 function servidorGrafico {
-    #SERVIDOR GRAFICO
     echo "INSTALAMOS SERVIDOR GRAFICO (XORG)"
-    # sudo pacman -S xorg xorg-server xorg-xinit
-    sudo pacman -S xorg-server xorg-xinit --noconfirm
+    sudo pacman -S xorg xorg-server xorg-xinit --noconfirm
     echo "preparamos el archivo de configuracion"
     #sudo cp /etc/X11/xinit/xinitrc ~/.xinitrc
-    echo ""
+    echo " "
 }
 
 function windowsManager {

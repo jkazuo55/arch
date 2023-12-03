@@ -11,3 +11,7 @@ iwctl --passphrase holamundo station wlan0 connect libre
 
 >>>>>>> networkmanager 
 nmtui 
+
+
+>>>>> activate wifi
+rfkill unblock 0
