@@ -8,3 +8,5 @@ function fixbootloader {
     echo ""
     reboot
 }
+
+fixbootloader
