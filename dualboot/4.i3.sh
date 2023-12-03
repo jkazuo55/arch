@@ -1,16 +1,6 @@
 #!/bin/bash
 #ejecutar usuario normal $sh 3.config.sh
 
-function yay {
-    sudo pacman -Syyyu --noconfirm
-    echo "instalando yay"
-    git clone "https://aur.archlinux.org/yay.git"
-    cd yay
-    makepkg -si
-    cd ..
-    sudo rm -rf yay
-}
-
 function servidorGrafico {
     echo "INSTALAMOS SERVIDOR GRAFICO (XORG)"
     sudo pacman -S xorg xorg-server xorg-xinit --noconfirm

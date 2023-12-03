@@ -181,12 +181,12 @@ function installGrub {
 function servidorGrafico {
     #SERVIDOR GRAFICO
     echo "INSTALAMOS SERVIDOR GRAFICO (XORG)"
-    # sudo pacman -S xorg xorg-server xorg-xinit 
+    # sudo pacman -S xorg xorg-server xorg-xinit
     sudo pacman -S xorg-server xorg-xinit --noconfirm
     echo "preparamos el archivo de configuracion"
     #sudo cp /etc/X11/xinit/xinitrc ~/.xinitrc
     echo ""
- }
+}
 
 function videonvidia {
     pacman -S nvidia nvidia-utils nvidia-settings
@@ -203,6 +203,16 @@ function displaymanager {
     # vim /etc/ly/config.ini
     # vim /usr/lib/systemd/system/ly.service
     
+}
+
+function yayAurman {
+    sudo pacman -Syyyu --noconfirm
+    echo "instalando yay"
+    git clone "https://aur.archlinux.org/yay.git"
+    cd yay
+    makepkg -si
+    cd ..
+    sudo rm -rf yay
 }
 
 function utilities {
@@ -233,7 +243,7 @@ function utilities {
     # manipulate directories and files
     pacman -S xdg-user-dirs xdg-utils --noconfirm
     
-    
+    yayAurman
     echo -e ""
     
 }
