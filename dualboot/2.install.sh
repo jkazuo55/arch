@@ -57,6 +57,8 @@ function installApps {
 
     yayAurman
 
+    pacman -S i3 --noconfirm
+
     echo -e "${GREEN} install apps fineched ${NC}"
 
 
