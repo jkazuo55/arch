@@ -11,7 +11,7 @@ function formatDisk {
     clear
     
     echo -e "${BLUE} FORMAT ROOT PARTITION ${NC}"
-    mkfs.ext4 -F -L "root" /dev/sdb4
+    mkfs.ext4 -F -L "root" /dev/sdb5
     echo -e "${GREEN} finiched ${NC}"
     
     # echo -e "FORMAT HOME PARTITION"
@@ -19,7 +19,7 @@ function formatDisk {
     # echo -e "${GREEN} finiched ${NC}"
     
     echo -e "${BLUE} FORMAT SWAP PARTITION ${NC}"
-    mkswap -L "SWAP" /dev/sdb5
+    mkswap -L "SWAP" /dev/sdb6
     echo -e "${GREEN} finiched ${NC}"
 }
 
@@ -27,7 +27,7 @@ function prepareInstalation {
     clear
     
     echo -e "${BLUE} MOUNT ROOT ${NC}"
-    mount /dev/sdb4 /mnt
+    mount /dev/sdb5 /mnt
     echo -e "${GREEN} finiched ${NC}"
     
     echo -e "${BLUE} CREATE HOME DIRECTORY ${NC}"
@@ -40,7 +40,7 @@ function prepareInstalation {
     # echo -e "${GREEN} finiched ${NC}"
     
     echo -e "${BLUE} ACTIVATE SWAP ${NC}"
-    swapon /dev/sdb5
+    swapon /dev/sdb6
     echo -e "${GREEN} finiched ${NC}"
     
     echo -e "${BLUE} CREATE DIRECTORY EFI ${NC}"
