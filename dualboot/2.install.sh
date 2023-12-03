@@ -28,13 +28,13 @@ function installApps {
     # base
     pacman -S linux-headers sudo dialog --noconfirm
     pacman -S gvfs-mtp gvfs-afc gvfs-gphoto2 --noconfirm
-    pacman -S dhcpcd --noconfirm
+    # pacman -S dhcpcd --noconfirm
     pacman -S vim nano --noconfirm
-    pacman -S  netctl --noconfirm
+    # pacman -S  netctl --noconfirm
     pacman -S git --noconfirm
     pacman -S tmux --noconfirm
 
-    pacman -S net-tools --noconfirm
+    # pacman -S net-tools --noconfirm
     pacman -S ttf-{dejavu,hack,roboto,liberation} --needed --noconfirm
 
     # Bluetooth
@@ -228,7 +228,7 @@ function startServices {
     echo -e "${BLUE} START SERVICES ${NC}"
 
     # enable services
-    systemctl enable dhcpcd.service
+    # systemctl enable dhcpcd.service
     systemctl enable NetworkManager.service
 
     echo -e "${CREEN} start services finish ${NC}"
