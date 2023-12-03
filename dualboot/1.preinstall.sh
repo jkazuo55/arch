@@ -56,7 +56,7 @@ function installBase {
     clear
 
     echo -e "${BLUE} INSTALL SYSTEM BASE ${NC}"
-    pacstrap -i /mnt base base-devel linux linux-firmware linux-headers dhcpcd gvfs-mtp gvfs-afc gvfs-gphoto2 vim git netctl dialog tmux intel-ucode sudo networkmanager nano
+    pacstrap -i /mnt base base-devel linux linux-firmware vim intel-ucode vim nano
     echo -e "${GREEN} finiched ${NC}"
 }
 
