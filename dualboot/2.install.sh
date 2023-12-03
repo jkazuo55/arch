@@ -28,21 +28,10 @@ function configClock {
     #   timedatectl list-timezones | grep La_Paz
     #   echo -e ""
     
-    echo -e "ahora establecemos la zona horaria"
     ln -sf /usr/share/zoneinfo/America/La_Paz /etc/localtime
-    echo -e "zona horaria establecida"
-    echo -e " "
-    
-    echo -e "configuramos el reloj "
     hwclock --systohc
-    echo -e ""
-    echo -e " "
-    
-    echo -e "actulizamos el reloj del sistema"
     timedatectl set-ntp true
-    echo -e "Reloj configurado y actualizado satisfactoriamente"
-    echo -e ""
-    
+    echo -e "${GREEN} finish ${NC}"
 }
 
 function asynctime {
@@ -64,9 +53,9 @@ function swapconfig {
     chmod 600 /swap_file
     mkswap /swap_file
     swapon /swap_file
-    echo -e " " >> /etc/fstab
-    echo -e "# Swap file setup" >> /etc/fstab
-    echo -e "/swap_file      none     swap       defaults       0        0 " >> /etc/fstab
+    echo " " >> /etc/fstab
+    echo "# Swap file setup" >> /etc/fstab
+    echo "/swap_file      none     swap       defaults       0        0 " >> /etc/fstab
     echo -e "${BLUE} finish ${NC}"
 }
 
@@ -75,29 +64,24 @@ function languaje {
     
     echo -e "${BLUE} LANGUAJE ${NC}"
     
-    echo -e "ESTABLECEMOS LA ONFIGURACION REGIONAL"
-    echo -e "vim /etc/locale.gen"
+    #  regional configuration
+    echo "vim /etc/locale.gen"
     sed -i 's/#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/g' /etc/locale.gen
     sed -i 's/#es_BO.UTF-8 UTF-8/es_BO.UTF-8 UTF-8/g' /etc/locale.gen
-    echo -e ""
     
-    echo -e "generamos la configuracion regional locale-gen"
+    #  generamos la configuracion regional locale-gen
     locale-gen
-    echo -e ""
     
-    echo -e "establecemos la variable LANG"
-    echo -e "LANG=en_US.UTF-8" >> /etc/locale.conf
-    echo -e ""
+    #  establecemos la variable LANG
+    echo "LANG=en_US.UTF-8" >> /etc/locale.conf
     
-    echo -e "exportamos la variable LANG"
+    #  exportamos la variable LANG
     export LANG=en_US.UTF-8
-    echo -e ""
     
-    echo -e "establecemos la variable LC_MESSAGES"
-    echo -e "LC_MESSAGES=en_US.UTF-8" >> /etc/locale.conf
-    echo -e ""
+    #  establecemos la variable LC_MESSAGES
+    echo "LC_MESSAGES=en_US.UTF-8" >> /etc/locale.conf
     
-    echo -e "ahora verificamos los locale"
+    #  ahora verificamos los locale
     locale
     echo -e "${GREEN} finish ${NC}"
     
@@ -106,7 +90,7 @@ function languaje {
 function loadkeysHelper {
     clear
     echo -e "${BLUE} LOAD KEYS ${NC}"
-    echo -e "cargamos loadkeys"
+    #  cargamos loadkeys
     loadkeys /usr/share/kbd/keymaps/i386/qwerty/us.map.gz
     echo -e "${GREEN} finish ${NC}"
 }
@@ -114,18 +98,18 @@ function loadkeysHelper {
 function hostname {
     clear
     echo -e "${BLUE} HOSTNAME ${NC}"
-    echo -e "configuramos el nombre del host"
-    echo -e "arch" >> /etc/hostname
+    #  configuramos el nombre del host
+    echo "arch" >> /etc/hostname
     echo -e "${BLUE} finish ${NC}"
 }
 
 function configNetwork {
     clear
     echo -e "${BLUE} CONFIG NETWORK ${NC}"
-    echo -e "configuramos el fichero de host"
-    echo -e "127.0.0.1 localhost" >> /etc/hosts
-    echo -e "::1 localhost" >> /etc/hosts
-    echo -e "127.0.1.1 arch.localdomain arch" >> /etc/hosts
+    #  configuramos el fichero de host
+    echo "127.0.0.1 localhost" >> /etc/hosts
+    echo "::1 localhost" >> /etc/hosts
+    echo "127.0.1.1 arch.localdomain arch" >> /etc/hosts
     echo -e "${BLUE} finish ${NC}"
     
     #   echo -e "verificamos"
@@ -136,11 +120,10 @@ function configNetwork {
 
 function configAccounts {
     clear
-    echo -e "root password"
+    #  root password
     passwd
-    echo -e ""
     
-    echo -e "julhuarachi password"
+    #  echo julhuarachi password
     useradd -m julhuarachi
     passwd julhuarachi
     usermod -aG wheel,storage,power julhuarachi
@@ -148,7 +131,7 @@ function configAccounts {
 }
 
 function extraconfig {
-   clear
+    clear
     # uncomment %wheel ALL=(ALL:ALL) ALL
     # add this line Defaults timestamp_timeout=0
     sleep 10
@@ -156,15 +139,15 @@ function extraconfig {
 }
 
 function configExtra {
+    clear
     echo -e "CONFIGURACION EXTRA"
-    echo -e ""
     echo -e "habilitamos multilib en repositorios"
-    echo -e "vim /etc/pacman.conf"
+    echo "vim /etc/pacman.conf"
     #sed -i 's/#\[multilib\]/\[multilib\]/g' /etc/pacman.conf
     #sed -i 's/#Include = \/etc\/pacman.d\/mirrorlist/Include = \/etc\/pacman.d\/mirrorlist/g' /etc/pacman.conf
-    echo -e "[multilib]" >> /etc/pacman.conf
-    echo -e "Include = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
-    echo -e "configuracion terminada"
+    echo "[multilib]" >> /etc/pacman.conf
+    echo "Include = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
+    echo "configuracion terminada"
     pacman -Syyu --noconfirm
     #CONFIG EXTRA
     pacman -S --noconfirm extra/alsa-utils
@@ -174,7 +157,8 @@ function configExtra {
     
 }
 
-function others {
+function startServices {
+    clear
     echo -e "enable services"
     systemctl enable dhcpcd.service
     systemctl enable NetworkManager.service
@@ -212,6 +196,7 @@ function displaymanager {
 }
 
 function utilities {
+    clear
     
     echo -e "instalamos programs extras"
     pacman -S dialog --noconfirm
@@ -254,7 +239,7 @@ configNetwork
 configAccounts
 extraconfig
 # configExtra
-others
+startServices
 connectWifi
 installGrub
 videonvidia
