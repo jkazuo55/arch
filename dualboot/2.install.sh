@@ -178,6 +178,16 @@ function installGrub {
     grub-mkconfig -o /boot/grub/grub.cfg
 }
 
+function servidorGrafico {
+    #SERVIDOR GRAFICO
+    echo "INSTALAMOS SERVIDOR GRAFICO (XORG)"
+    # sudo pacman -S xorg xorg-server xorg-xinit 
+    sudo pacman -S xorg-server xorg-xinit --noconfirm
+    echo "preparamos el archivo de configuracion"
+    #sudo cp /etc/X11/xinit/xinitrc ~/.xinitrc
+    echo ""
+ }
+
 function videonvidia {
     pacman -S nvidia nvidia-utils nvidia-settings
 }
@@ -242,6 +252,7 @@ extraconfig
 startServices
 connectWifi
 installGrub
+servidorGrafico
 videonvidia
 videointel
 displaymanager
