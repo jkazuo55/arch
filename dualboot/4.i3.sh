@@ -1,9 +1,13 @@
 #!/bin/bash
 #ejecutar usuario normal $sh 3.config.sh
 
-function windowsManager {
+function preinstall {
     sudo pacman -S rofi --noconfirm #menu de apps
     sudo pacman -S nitrogen --noconfirm #generador de fondo de pantalla
+}
+
+function copyfiles {
+    
 }
 
 function dunst {
