@@ -261,6 +261,8 @@ function servidorGrafico {
 
     # sudo pacman -S xorg xorg-server xorg-xinit
     sudo pacman -S xorg-server xorg-xinit --noconfirm
+    #x kill command
+    sudo pacman -S xorg-xkill --noconfirm #x kill command
     # sudo cp /etc/X11/xinit/xinitrc ~/.xinitrc
     echo "exec i3" > /home/julhuarachi/.xinitrc
     
@@ -309,6 +311,6 @@ connectWifi
 installGrub
 servidorGrafico
 # videonvidia
-videointel
+# videointel
 displaymanager
 
