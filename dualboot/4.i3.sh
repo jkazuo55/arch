@@ -1,14 +1,6 @@
 #!/bin/bash
 #ejecutar usuario normal $sh 3.config.sh
 
-function servidorGrafico {
-    echo "INSTALAMOS SERVIDOR GRAFICO (XORG)"
-    sudo pacman -S xorg xorg-server xorg-xinit --noconfirm
-    echo "preparamos el archivo de configuracion"
-    #sudo cp /etc/X11/xinit/xinitrc ~/.xinitrc
-    echo " "
-}
-
 function windowsManager {
     #PAQUETES EXTRAS
     sudo pacman -S acpi --noconfirm #estado de la bateria

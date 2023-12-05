@@ -16,7 +16,7 @@ function yayAurman {
     echo "instalando yay"
     git clone "https://aur.archlinux.org/yay.git"
     cd yay
-    makepkg -si
+    makepkg -si --noconfirm
     cd ..
     sudo rm -rf yay
 }
@@ -54,8 +54,6 @@ function installApps {
     
     # manipulate directories and files
     pacman -S xdg-user-dirs xdg-utils --noconfirm
-
-    yayAurman
 
     pacman -S i3 --noconfirm
 
@@ -294,6 +292,7 @@ function displaymanager {
 
 
 installApps
+yayAurman
 datetime
 configClock
 asynctime
