@@ -3,11 +3,21 @@
 
 function preinstall {
     sudo pacman -S rofi --noconfirm #menu de apps
+    yay -S aur/rofi-greenclip
     sudo pacman -S nitrogen --noconfirm #generador de fondo de pantalla
 }
 
+
+function bluetooth {
+    sudo pacman -S bluez bluez-utils blueman
+    sudo systemctl enable bluetooth.service
+    sudo systemctl start bluetooth.service
+    # exec --no-startup-id blueman-applet
+}
+
 function copyfiles {
-    
+    cp -r i3 /home/julhuarachi/.config
+    cp -r rofi /home/julhuarachi/.config
 }
 
 function dunst {
