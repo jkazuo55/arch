@@ -3,7 +3,9 @@
 
 function windowsManager {
     sudo pacman -S rofi --noconfirm #menu de apps
+    sudo pacman -S blueberry --noconfirm #menu de apps
     sudo pacman -S nitrogen --noconfirm #generador de fondo de pantalla
+    sudo pacman -S awesome-terminal-fonts --noconfirm #icons
 }
 
 function dunst {
